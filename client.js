@@ -69,57 +69,54 @@ function calculateIndividualEmployeeBonus( employee ) {
 
         } else if (employees[i].reviewRating === 3){
             //console.log('4% bonus');
-            staffBonus.bonusPercentage += 4;
+            staffBonus.bonusPercentage += .04;
             if (employees[i].employeeNumber.length === 4 ){
                // console.log('+5%');
-                staffBonus.bonusPercentage += 5;
+                staffBonus.bonusPercentage += .05;
                 //console.log(bonusPercentage);
             }
         } else if (employees[i].reviewRating === 4){
             //console.log('6%');
-            staffBonus.bonusPercentage += 6;
+            staffBonus.bonusPercentage += .06;
             if (employees[i].employeeNumber.length === 4 ){
              // console.log('+5%');
-              staffBonus.bonusPercentage += 5;
+              staffBonus.bonusPercentage += .05;
              // console.log(bonusPercentage);
           }
 
         }else if (employees[i].reviewRating === 5){
            // console.log('10%');
-           staffBonus.bonusPercentage += 10;
+           staffBonus.bonusPercentage += .10;
             if (employees[i].employeeNumber.length === 4 ){
               //console.log('+5%');
-              staffBonus.bonusPercentage += 5;
+              staffBonus.bonusPercentage += .05;
              // console.log(bonusPercentage);
           }
         }
 
         if (employees[i].annualSalary >= 65000){
-          staffBonus.bonusPercentage = staffBonus.bonusPercentage - 1; 
+          staffBonus.bonusPercentage = staffBonus.bonusPercentage - .01; 
           //console.log(staffBonus.bonusPercentage);
+        if (staffBonus.bonusPercentage < 0){
+          staffBonus.bonusPercentage = 0;
+        }  
         }
 
+      staffBonus.totalBonus =  employees[i].annualSalary  * staffBonus.bonusPercentage
+      console.log('total bonus ', staffBonus.totalBonus)
 
-        // if (staffBonus.bonusPercentage < 0){
-        //       console.log('a;dslkfj;asldkfj');
-        //       staffBonus.bonusPercentage = 0;
-        // }
-
-      //console.log(employees[i].annualSalary);
+      staffBonus.totalCompensation = employees[i].annualSalary / 1 + staffBonus.totalBonus
     }
-
+   
 
 
   }
 
-  if (staffBonus.bonusPercentage > 13){
-        staffBonus.bonusPercentage = 13;
+  if (staffBonus.bonusPercentage > .13){
+        staffBonus.bonusPercentage = .13;
+
   }
   
-  if (staffBonus.bonusPercentage < 0){
-    //console.log('a;dslkfj;asldkfj');
-    staffBonus.bonusPercentage = 0;
-}
 
 
   // return new object with bonus results
