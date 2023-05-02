@@ -49,17 +49,33 @@ function calculateIndividualEmployeeBonus( employee ) {
   // your logic here
   console.log('in calculatInd');
   console.log( employee );
+  let name = employee;
+  let bonusPercentage;
+  let totalCompensation;
+  let totalBonus;
+  let staffBonus = {name: name ,
+                bonusPercentage: bonusPercentage ,
+                totalCompensation: totalCompensation,
+                totalBonus: totalBonus}
+  console.log(staffBonus);
   for(let i = 0; i < employees.length; i++){
     //console.log(employees[i]);
      if (employees[i].name === employee){
+      
         if (employees[i].reviewRating <= 2){
             console.log('no bonus');
+            bonusPercentage = 0;
         } else if (employees[i].reviewRating === 3){
             console.log('4% bonus');
             if (employees[i].employeeNumber.length === 4 ){
                 console.log('+5%');
             }
-        } 
+        } else if (employees[i].reviewRating === 4){
+            console.log('6%');
+
+        }else if (employees[i].reviewRating === 5){
+            console.log('10%');
+        }
 
       console.log(employees[i].annualSalary);
     }
@@ -72,3 +88,11 @@ function calculateIndividualEmployeeBonus( employee ) {
 
 }
 console.log(calculateIndividualEmployeeBonus('Atticus'));
+console.log(calculateIndividualEmployeeBonus('Jem'));
+console.log(calculateIndividualEmployeeBonus('Scout'));
+
+console.log(calculateIndividualEmployeeBonus('Robert'));
+console.log(calculateIndividualEmployeeBonus('Mayella'));
+
+
+
