@@ -50,42 +50,80 @@ function calculateIndividualEmployeeBonus( employee ) {
   console.log('in calculatInd');
   console.log( employee );
   let name = employee;
-  let bonusPercentage;
+  let bonusPercentage = 0;
   let totalCompensation;
   let totalBonus;
   let staffBonus = {name: name ,
                 bonusPercentage: bonusPercentage ,
                 totalCompensation: totalCompensation,
-                totalBonus: totalBonus}
-  console.log(staffBonus);
+                totalBonus: totalBonus};
+  //console.log(staffBonus);
   for(let i = 0; i < employees.length; i++){
     //console.log(employees[i]);
      if (employees[i].name === employee){
       
         if (employees[i].reviewRating <= 2){
             console.log('no bonus');
-            bonusPercentage = 0;
+            //bonusPercentage = 0;
+
+
         } else if (employees[i].reviewRating === 3){
-            console.log('4% bonus');
+            //console.log('4% bonus');
+            staffBonus.bonusPercentage += 4;
             if (employees[i].employeeNumber.length === 4 ){
-                console.log('+5%');
+               // console.log('+5%');
+                staffBonus.bonusPercentage += 5;
+                //console.log(bonusPercentage);
             }
         } else if (employees[i].reviewRating === 4){
-            console.log('6%');
+            //console.log('6%');
+            staffBonus.bonusPercentage += 6;
+            if (employees[i].employeeNumber.length === 4 ){
+             // console.log('+5%');
+              staffBonus.bonusPercentage += 5;
+             // console.log(bonusPercentage);
+          }
 
         }else if (employees[i].reviewRating === 5){
-            console.log('10%');
+           // console.log('10%');
+           staffBonus.bonusPercentage += 10;
+            if (employees[i].employeeNumber.length === 4 ){
+              //console.log('+5%');
+              staffBonus.bonusPercentage += 5;
+             // console.log(bonusPercentage);
+          }
         }
 
-      console.log(employees[i].annualSalary);
+        if (employees[i].annualSalary >= 65000){
+          staffBonus.bonusPercentage = staffBonus.bonusPercentage - 1; 
+          //console.log(staffBonus.bonusPercentage);
+        }
+
+
+        // if (staffBonus.bonusPercentage < 0){
+        //       console.log('a;dslkfj;asldkfj');
+        //       staffBonus.bonusPercentage = 0;
+        // }
+
+      //console.log(employees[i].annualSalary);
     }
 
 
 
   }
-  
-  // return new object with bonus results
 
+  if (staffBonus.bonusPercentage > 13){
+        staffBonus.bonusPercentage = 13;
+  }
+  
+  if (staffBonus.bonusPercentage < 0){
+    //console.log('a;dslkfj;asldkfj');
+    staffBonus.bonusPercentage = 0;
+}
+
+
+  // return new object with bonus results
+  return staffBonus;
 }
 console.log(calculateIndividualEmployeeBonus('Atticus'));
 console.log(calculateIndividualEmployeeBonus('Jem'));
